@@ -30,7 +30,6 @@ function [H12,inliers] = ransacHomography(pos1,pos2,numIters,inlierTol)
             inliers = find(ind);
             match = sum(ind);
             H12 = h12;
-            j=i
         end
         
     end 
