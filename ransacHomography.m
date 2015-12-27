@@ -18,8 +18,11 @@ function [H12,inliers] = ransacHomography(pos1,pos2,numIters,inlierTol)
         samp2 = pos2(perm,:);
 
         h12 = leastSquaresHomography(samp1,samp2);
-        pos1_t = H12 * pos1;
-
+        try
+        pos1_t = applyHomography(pos1,h12);
+        catch
+            pos1_t = inf(size(pos2));
+        end
         norm = sum((pos1_t - pos2).^2, 2);
         
         ind = norm < inlierTol;
@@ -27,8 +30,9 @@ function [H12,inliers] = ransacHomography(pos1,pos2,numIters,inlierTol)
             inliers = find(ind);
             match = sum(ind);
             H12 = h12;
+            j=i
         end
         
     end 
-    
+
 end

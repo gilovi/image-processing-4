@@ -16,10 +16,10 @@ function [ind1,ind2] = matchFeatures(desc1,desc2,minScore)
     desc1_len = size(desc1,3);
     desc2_len = size(desc2,3);
     
-    desc1 = reshape(desc1,desc1_len , numel(desc1)/desc1_len );
-    desc2 = reshape(desc2,desc2_len , numel(desc2)/desc2_len );
+    desc1 = reshape(desc1 , numel(desc1)/desc1_len , desc1_len);
+    desc2 = reshape(desc2 , numel(desc2)/desc2_len , desc2_len);
     
-    corr = desc1 * desc2';
+    corr = desc1' * desc2;
     
     %get 2 max vals of each
     [~,x] = sort(corr,1);

@@ -10,7 +10,7 @@ function [pos,desc] = findFeatures(pyr)
 % desc ? A kxkxN feature descriptor matrix.
     orig_im = pyr{1};
     [r,c] = size(orig_im);
-    pos = spreadOutCorners(orig_im,round(r*.01),round(c*.01), 3);
+    pos = spreadOutCorners(orig_im,round(r*.01),round(c*.01), 5);
     desc = sampleDescriptor(pyr{3}, pos, 3);
 
 end

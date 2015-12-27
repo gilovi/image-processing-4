@@ -6,11 +6,11 @@ pyr2 = GaussianPyramid(im2,3,5);
 [pos1, desc1] = findFeatures(pyr1);
 [pos2, desc2] = findFeatures(pyr2);
 
-[ind1,ind2] = matchFeatures(desc1, desc2, 1);
+[ind1,ind2] = matchFeatures(desc1, desc2, 0.85);
 
 pos1 = pos1(ind1,:);
 pos2 = pos2(ind2,:);
 
-%inlind = ransacHomography(pos1, pos2, 100, 0.1);
+[H12,inlind] = ransacHomography(pos1, pos2, 10000, 0.15);
 
-displayMatches(im1,im2,pos1,pos2,5);
+displayMatches(im1,im2,pos1,pos2,inlind);

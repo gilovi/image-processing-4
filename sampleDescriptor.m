@@ -19,7 +19,7 @@ function desc = sampleDescriptor(im,pos,descRad)
         (pos(i,2) - descRad : 1 : pos(i,2) + descRad) );
         curr_desc = interp2(X,Y,im,Xp,Yp);
         mu = mean(curr_desc(:));
-        desc(:,:,i) = (curr_desc - mu) / norm(curr_desc - mu);
+        desc(:,:,i) = (curr_desc - mu) / norm(curr_desc(:) - mu);
     end  
 
 end
