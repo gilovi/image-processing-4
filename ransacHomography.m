@@ -2,13 +2,13 @@ function [H12,inliers] = ransacHomography(pos1,pos2,numIters,inlierTol)
 % RANSACHOMOGRAPHY Fit homography to maximal inliers given point matches
 % using the RANSAC algorithm.
 % Arguments:
-% pos1,pos2 ? Two Nx2 matrices containing n rows of [x,y] coordinates of
+% pos1,pos2 - Two Nx2 matrices containing n rows of [x,y] coordinates of
 % matched points.
-% numIters ? Number of RANSAC iterations to perform.
-% inlierTol ? inlier tolerance threshold.
+% numIters - Number of RANSAC iterations to perform.
+% inlierTol - inlier tolerance threshold.
 % Returns:
-% H12 ? A 3x3 normalized homography matrix.
-% inliers ? A kx1 vector where k is the number of inliers, containing the indices in pos1/pos2 of the maximal set of
+% H12 - A 3x3 normalized homography matrix.
+% inliers - A kx1 vector where k is the number of inliers, containing the indices in pos1/pos2 of the maximal set of
 % inlier matches found.
     
     match = 0;
