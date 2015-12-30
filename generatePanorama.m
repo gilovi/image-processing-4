@@ -21,9 +21,9 @@ if verbose;
 end
 
 
-ransacNumIters = 15000;
-ransacInlierTol = 0.15;%9; smaller
-minMatchScore = 0.95;%0.33; bigger
+ransacNumIters = 19000;
+ransacInlierTol = 0.17;%9; smaller
+minMatchScore = 0.96;%0.33; bigger
 
 % load frames, detect feature point positions and compute their descriptors
 if verbose; 
@@ -72,6 +72,7 @@ end
 % render each image channel seperately using Htot
 if verbose; 
   disp('Rendering panorama...'); end
+delete M.mat;
 panorama(:,:,1) = renderPanorama(imR,Htot); 
 panorama(:,:,2) = renderPanorama(imG,Htot);
 panorama(:,:,3) = renderPanorama(imB,Htot);
@@ -82,6 +83,7 @@ if ~isempty(outPath)
     fprintf(1,'Saving panorama to %s...\n',outPath); end
   imwrite(panorama,outPath,'Quality',93);
 end
+
 
 if verbose
   figure,imshow(panorama);

@@ -1,0 +1,59 @@
+gilovi
+30060449
+
+matlab version: 2014a
+
+
+Exercise 4: Panorama Registration & Stitching
+=================================================
+
+submitted files:
+----------------
+accumulateHomographies
+applyHomography
+blurInImageSpace
+displayMatches
+dynamic_seam - a dynamic program to find a low 'cost' mask
+examplePanoramas
+expand
+findFeatures
+GaussianPyramid
+generatePanorama
+HarrisCornerDetector
+imReadAndConvert
+LaplacianPyramid
+LaplacianToImage
+leastSquaresHomography
+matchFeatures
+myPanoramas - genrates my panoramas from the files  big_painting and omega
+nonMaximumSuppression
+pyramidBlending
+ransacHomography
+reduce
+renderPanorama
+sampleDescriptor
+spreadOutCorners
+
+README - this file.
+
+
+Bonus QUESTIONS
+---------------------
+I've implemented a dynamic programming code as described at class.
+My code is in the dynamic_seam.m file.
+in my code, the cost matrix that is passed to this function is only the vertical strip of the region that
+the current morphed image is intersecting with the current panorama image.
+(plus one col each side to enable it go entirely 'behind an image') 
+The matrix passed contains zeros at regions that non of the images exist, inf at positions that only one image exists,
+and d = (I1-I2)^2 at positions that the images intersect.
+
+In order to vectorize the inner loop for passing over all the cells in each row,
+the code is creating a matrix of linear indices of the three possible neighbouring cells in the next row
+and increments this matrix in each iteration.
+Then it creates a chart of costs using a loop over the rows, and fills up a backtracking matrix that contains
+the index each cell got its cost from.
+Lastly it backtracks the backtrack matrix to find the seam ,and updates the mask accordingly.
+
+In some input images the transformation is so that it's mathematically impossible for the dynamic method to find a 
+solution. so the code holding the basic method is in the render panorama file so it is possible to use it instead.
+(simply uncomment). 
